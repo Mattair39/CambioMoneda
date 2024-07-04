@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CambioMoneda.ConversionView"
+             xmlns:local="clr-namespace:CambioMoneda"
+             Title="ConversionView">
+    <ContentPage.BindingContext>
+        <local:CambioDivisasViewModel /> 
+    </ContentPage.BindingContext>
+
+    <StackLayout Padding="20">
+        <Entry Placeholder="Amount" Keyboard="Numeric" Text="{Binding Model.ValorAcambiar}" />
+        <Picker Title="From" SelectedItem="{Binding Model.MonedaBase}">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String >USD</x:String>
+                    <x:String >EUR</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+        <Picker Title="To" SelectedItem="{Binding Model.MonedaACambiar}">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>USD</x:String>
+                    <x:String>EUR</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+        <Button Text="Convert" Command="{Binding ComandoConvertirMoneda}" />
+        <Label Text="{Binding Model.ValorRecibido, StringFormat='Result: {0:F}'}" />
+
+
+        <Button Text="Muestra Chiste" Command="{Binding ComandoMuestraChiste}" />
+        <Label Text="{Binding Model.ChisteChuck}" />
+        
+    </StackLayout>
+</ContentPage>
